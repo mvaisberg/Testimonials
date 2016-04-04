@@ -1,4 +1,4 @@
 # Testimonials
 
-Configuration Testimonials: System -> Configuration -> Mext -> Testimonials
-Manage Testimonials: Customers -> Testimonials
+<b>Configuration Testimonials:</b> System -> Configuration -> Mext -> Testimonials <br>
+<b>Manage Testimonials:</b> Customers -> Testimonials
