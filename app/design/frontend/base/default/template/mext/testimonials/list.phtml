@@ -1,0 +1,55 @@
+<?php
+    $testimonials = $this->getTestimonialsCollection();
+?>
+<h1><?php echo $this->__("Testimonials") ?></h1>
+<div class="testimonials">
+    <button class="button" id="addNew" onclick="showForm();"><?php echo $this->__("Add New Testimonial") ?></button>
+    <div id="top">
+        <?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+            <?php
+                $customerData = Mage::getSingleton('customer/session')->getCustomer();
+            ?>
+            <form action="<?php echo $this->getUrl('testimonials/index/save'); ?>" id="testimonial-form">
+                <input type="hidden" name="customer_id" value="<?php echo $customerData->getId() ?>"/>
+                <label for="message" class="required"><em>*</em><?php echo $this->__('Message') ?></label>
+                <div class="input-box">
+                    <textarea name="message" id="message"  title="<?php echo $this->__('Message') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                </div>
+                <div class="buttons-set">
+                    <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+                    <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+                </div>
+            </form>
+        <?php else: ?>
+            <div class="login-message">
+                <?php Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->helper('core/url')->getCurrentUrl()); ?>
+                <p><a href="<?php echo Mage::getUrl('customer/account/login', array('referer' => Mage::helper('core')->urlEncode($this->helper('core/url')->getCurrentUrl())))?>" ><?php echo $this->__('Log In') ?></a> <?php echo $this->__('is required to leave a testimonial') ?></p>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php if(count($testimonials) > 0): ?>
+        <?php echo $this->getPagerHtml(); ?>
+        <ul class="testimonials_list">
+            <?php foreach($testimonials as $t): ?>
+
+                    <li>
+                        <p class="testimonial_name"><strong><?php echo $t['name'] ?></strong></p>
+                        <p class="testimonial_message">
+                            <img src="<?php echo $this->getSkinUrl('images/mext/quotes_open.jpg') ?>" alt="" width="15"/>
+                            <?php echo $t['message'] ?>
+                            <img src="<?php echo $this->getSkinUrl('images/mext/quotes_close.jpg') ?>" alt="" width="15"/>
+                        </p>
+                        <p><?php echo $t['created_time'] ?></p>
+                    </li>
+
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p><?php echo $this->__("There aren't testimonials to show") ?></p>
+    <?php endif; ?>
+</div>
+<script>
+    function showForm(){
+        $('top').show();
+    }
+</script>
