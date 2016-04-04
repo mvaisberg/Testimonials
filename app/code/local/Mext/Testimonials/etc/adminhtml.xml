@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <menu>
-        <customer>
+        <mext>
+            <title>Mext</title>
+            <sort_order>30</sort_order>
             <children>
                 <testimonials translate="title" module="testimonials">
                     <title>Testimonials</title>
-                    <sort_order>9999</sort_order>
+                    <sort_order>30</sort_order>
                     <action>adminhtml/index/index</action>
                 </testimonials>
             </children>
-        </customer>
+        </mext>
     </menu>
     <acl>
         <resources>
-            <customer>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
                 <children>
-                    <testimonials translate="title" module="testimonials">
-                        <title>Testimonials</title>
-                        <sort_order>9999</sort_order>
-                    </testimonials>
+                    <mext>
+                        <children>
+                            <testimonials translate="title" module="testimonials">
+                                <title>Testimonials</title>
+                                <sort_order>30</sort_order>
+                            </testimonials>
+                        </children>
+                    </mext>
                 </children>
-            </customer>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <testimonials translate="title" module="testimonials">
+                                        <title>Testimonials</title>
+                                    </testimonials>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
         </resources>
     </acl>
 </config>

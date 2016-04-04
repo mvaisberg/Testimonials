@@ -18,4 +18,13 @@ class Mext_Testimonials_Helper_Data extends Mage_Core_Helper_Abstract{
         return $data;
     }
 
+    public function canShowTopLink()
+    {
+        if(Mage::getStoreConfig('testimonials/general/enabled') && Mage::getStoreConfig('testimonials/general/top_links')){
+            return 'Testimonials';
+        }
+
+        return false;
+    }
+
 }

@@ -5,16 +5,15 @@ class Mext_Testimonials_Adminhtml_IndexController extends Mage_Adminhtml_Control
     protected function _initAction()
     {
         $this->loadLayout()
-            ->_setActiveMenu('customer/testimonials')
+            ->_setActiveMenu('mext/testimonials')
             ->_addBreadcrumb(Mage::helper('testimonials')->__('Testimonials'), Mage::helper('testimonials')->__('Testimonials List'));
         return $this;
     }
 
     public function indexAction()
     {
-        $this->_title($this->__('Customer'))
-            ->_title($this->__('Testimonials'))
-            ->_title($this->__('Manage Testimonials'));
+        $this->_title($this->__('Mext'))
+            ->_title($this->__('Testimonials'));
 
         $this->_initAction();
         $this->_addContent($this->getLayout()->createBlock('testimonials/adminhtml_list'));
@@ -28,9 +27,8 @@ class Mext_Testimonials_Adminhtml_IndexController extends Mage_Adminhtml_Control
 
     public function editAction()
     {
-        $this->_title($this->__('Customer'))
-            ->_title($this->__('Testimonials'))
-            ->_title($this->__('Manage Testimonials'));
+        $this->_title($this->__('Mext'))
+            ->_title($this->__('Edit Testimonials'));
 
         $id = $this->getRequest()->getParam('entity_id');
         $model = Mage::getModel('mext_testimonials/testimonials');

@@ -1,0 +1,40 @@
+.testimonials_list li{
+    border:1px solid #ccc;
+    width:100%;
+    padding: 20px;
+    margin-bottom:15px;
+}
+.testimonials #addNew{
+    margin-bottom:20px;
+}
+
+.testimonials_list .testimonial_message{
+    padding: 20px;
+}
+
+.testimonials_list .testimonial_message img{
+    display:inline-block;
+}
+
+.testimonials #testimonial-form{
+    padding:20px;
+}
+
+.testimonials #testimonial-form .buttons-set button{
+    float:left;
+}
+
+.testimonials #testimonial-form .buttons-set p.required{
+    float:left;
+}
+
+.testimonials .login-message{
+    width:100%;
+    padding:20px;
+}
+
+.testimonials .pager{
+    border:1px solid #ccc;
+    float:none;
+    padding:10px;
+}

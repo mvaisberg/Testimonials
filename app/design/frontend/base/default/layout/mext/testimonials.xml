@@ -5,10 +5,9 @@
             <action method="addItem"><type>skin_css</type><name>css/mext/testimonials.css</name></action>
         </reference>
         <reference name="top.links">
-            <action method="addLink" translate="label title" module="testimonials" ifconfig="testimonials/general/top_links">
-                <label>Testimonials</label>
-                <url>testimonials</url>
-                <title>Testimonials</title>
+            <action method="addLink" translate="label title" module="testimonials">
+                <template helper="testimonials/data/canShowTopLink"/>
+                <label>testimonials</label>
                 <position>200</position>
             </action>
         </reference>
@@ -18,9 +17,7 @@
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
         <reference name="content">
-            <block type="testimonials/list" name="testimonials" template="mext/testimonials/list.phtml">
-                <block type="testimonials/list_bottom" name="testimonials.list.bottom" template="tm/testimonials/list/bottom.phtml" />
-            </block>
+            <block type="testimonials/list" name="testimonials" template="mext/testimonials/list.phtml"/>
         </reference>
     </mext_testimonials_index_index>
 </layout>

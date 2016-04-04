@@ -2,6 +2,15 @@
 
 class Mext_Testimonials_IndexController extends Mage_Core_Controller_Front_Action
 {
+    public function preDispatch()
+    {
+        parent::preDispatch();
+        if (!Mage::getStoreConfigFlag('testimonials/general/enabled', null)) {
+            $this->setFlag('', 'no-dispatch', true);
+            $this->_redirect('noRoute');
+        }
+    }
+
     public function indexAction(){
         $this->loadLayout();
         $this->renderLayout();
@@ -15,7 +24,8 @@ class Mext_Testimonials_IndexController extends Mage_Core_Controller_Front_Actio
         }
 
         if(!Mage::getSingleton('customer/session')->isLoggedIn()){
-            $this->_redirect('customer/account/create');
+            Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->helper('core/url')->getCurrentUrl());
+            $this->_redirect('customer/account/login');
             return;
         }
 

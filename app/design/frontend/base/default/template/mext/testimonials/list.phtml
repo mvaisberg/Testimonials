@@ -1,10 +1,10 @@
 <?php
-    $testimonials = $this->getTestimonialsCollection();
+    $testimonials = $this->getCollection();
 ?>
 <h1><?php echo $this->__("Testimonials") ?></h1>
 <div class="testimonials">
     <button class="button" id="addNew" onclick="showForm();"><?php echo $this->__("Add New Testimonial") ?></button>
-    <div id="top">
+    <div id="top-testimonials" style="display:none">
         <?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
             <?php
                 $customerData = Mage::getSingleton('customer/session')->getCustomer();
@@ -27,19 +27,19 @@
             </div>
         <?php endif; ?>
     </div>
-    <?php if(count($testimonials) > 0): ?>
+    <?php if($testimonials->getSize() > 0): ?>
         <?php echo $this->getPagerHtml(); ?>
         <ul class="testimonials_list">
             <?php foreach($testimonials as $t): ?>
 
                     <li>
-                        <p class="testimonial_name"><strong><?php echo $t['name'] ?></strong></p>
+                        <p class="testimonial_name"><strong><?php echo $t->getData('first_name').' '.$t->getData('last_name') ?></strong></p>
                         <p class="testimonial_message">
                             <img src="<?php echo $this->getSkinUrl('images/mext/quotes_open.jpg') ?>" alt="" width="15"/>
-                            <?php echo $t['message'] ?>
+                            <?php echo $t->getMessage() ?>
                             <img src="<?php echo $this->getSkinUrl('images/mext/quotes_close.jpg') ?>" alt="" width="15"/>
                         </p>
-                        <p><?php echo $t['created_time'] ?></p>
+                        <p><?php echo $t->getCreatedTime() ?></p>
                     </li>
 
             <?php endforeach; ?>
@@ -48,8 +48,8 @@
         <p><?php echo $this->__("There aren't testimonials to show") ?></p>
     <?php endif; ?>
 </div>
-<script>
+<script type="text/javascript">
     function showForm(){
-        $('top').show();
+        $('top-testimonials').show();
     }
 </script>
